@@ -1,0 +1,36 @@
+Run the following 4 services separately:
+
+1.For running the Python backend server:
+	a. cd flight_status
+  b. python -m venv flight_status_env
+  c. flight_status_env\Scripts\activate
+  d. pip install -r requirements.txt
+  e. python manage.py runserver
+
+2. For running the frontend using React.js:
+  a.  cd flight-status-frontend
+  b.  npm start
+
+3. For running celery(# requires rabbit mq server to be running on backend):
+  a. cd flight_status
+  b. flight_status_env\Scripts\activate
+  c. celery -A flight_status worker --loglevel=info
+
+4. For running mock_airport_data:
+  a. cd flight_status
+  b. flight_status_env\Scripts\activate
+  c. python mock_airport_data.py
+
+
+After this, open http://localhost:3000/ to see all the flights list with their real-time status and 
+http://localhost:8000/flights/update/<Flightid>, where you can try passing http://localhost:8000/flights/update/Flight2/
+which is already present in our database to update the status, by default values will be updated as status = 'Delayed'
+and gate = 'A1' for every run and only SMS service will work and SMS will be sent to the details stored in Notification table.
+
+
+
+
+
+
+ 
+
